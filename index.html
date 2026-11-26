@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JobTracker | Suas candidaturas organizadas</title>
+  <meta name="description" content="Acompanhe candidaturas a vagas em um quadro: status, entrevistas, contato do recrutador e anotações.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="topo">
+    <div class="marca"><span class="logo" aria-hidden="true">JT</span><div><h1>JobTracker</h1><p>Sua busca de emprego em um só lugar</p></div></div>
+    <div class="topo__acoes">
+      <label class="busca"><span class="sr">Buscar</span><input type="search" id="busca" placeholder="Buscar empresa ou cargo"></label>
+      <button class="btn" id="nova">+ Nova candidatura</button>
+    </div>
+  </header>
+
+  <section class="resumo" aria-label="Resumo">
+    <div class="stat"><b id="s-total">0</b><span>candidaturas</span></div>
+    <div class="stat"><b id="s-ativas">0</b><span>em andamento</span></div>
+    <div class="stat"><b id="s-taxa">0%</b><span>viraram entrevista</span></div>
+    <div class="stat"><b id="s-semana">0</b><span>enviadas nos últimos 7 dias</span></div>
+    <div class="proximas" id="proximas"></div>
+  </section>
+
+  <main class="quadro" id="quadro"></main>
+
+  <dialog id="dlg" aria-labelledby="dlg-titulo">
+    <form method="dialog" id="form" class="form">
+      <div class="form__topo"><h2 id="dlg-titulo">Nova candidatura</h2><button class="fechar" value="cancelar" formnovalidate aria-label="Fechar">×</button></div>
+      <div class="grade">
+        <label>Empresa*<input id="f-empresa" required maxlength="50"></label>
+        <label>Cargo*<input id="f-cargo" required maxlength="60"></label>
+        <label>Status<select id="f-status"></select></label>
+        <label>Modelo<select id="f-modelo"><option>Remoto</option><option>Híbrido</option><option>Presencial</option></select></label>
+        <label>Salário / faixa<input id="f-salario" maxlength="40" placeholder="Ex.: R$ 5.000 a 6.500"></label>
+        <label>Data da candidatura<input type="date" id="f-data"></label>
+        <label class="largo">Link da vaga<input type="url" id="f-link" placeholder="https://"></label>
+      </div>
+      <fieldset>
+        <legend>Entrevista</legend>
+        <div class="grade">
+          <label>Data e hora<input type="datetime-local" id="f-entrevista"></label>
+          <label>Etapa<input id="f-etapa" maxlength="40" placeholder="Ex.: Técnica com o time"></label>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend>Recrutador(a)</legend>
+        <div class="grade">
+          <label>Nome<input id="f-rnome" maxlength="50"></label>
+          <label>E-mail<input type="email" id="f-remail" maxlength="80"></label>
+          <label>Telefone / WhatsApp<input id="f-rfone" maxlength="20"></label>
+          <label>LinkedIn<input id="f-rlinkedin" maxlength="120" placeholder="linkedin.com/in/..."></label>
+        </div>
+      </fieldset>
+      <label class="largo">Anotações<textarea id="f-notas" rows="3" maxlength="800" placeholder="Perguntas que fizeram, próximos passos, impressões..."></textarea></label>
+      <div class="form__rodape">
+        <button type="button" class="btn perigo" id="excluir" hidden>Excluir</button>
+        <span></span>
+        <button class="btn sec" value="cancelar" formnovalidate>Cancelar</button>
+        <button class="btn" value="salvar">Salvar</button>
+      </div>
+    </form>
+  </dialog>
+  <div class="toast" id="toast" role="status" hidden></div>
+  <script src="js/script.js"></script>
+</body>
+</html>
